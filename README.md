@@ -1,33 +1,46 @@
 # Google Form to Spreadsheet 自動記録システム
 
-Google フォームに入力された情報を、Google Spreadsheet に自動的に記録するシステムです。
-Google Apps Script を使用しており、設定管理もスクリプトで一元的に行えます。
+Google フォームの回答を Google Spreadsheet に自動記録する、Google Apps Script ベースの業務自動化サンプルです。
+
+フォーム受付、問い合わせ管理、申込管理などでは、回答内容をスプレッドシートに整理し、後続の確認や集計につなげる場面がよくあります。このリポジトリでは、フォームとスプレッドシートの設定をコードで管理し、送信内容を自動で記録する仕組みを実装しています。
+
+## 想定する用途
+
+- 問い合わせフォームの回答を管理したい
+- 申込・予約フォームの回答を一覧化したい
+- Google フォームとスプレッドシートを業務用に整えたい
+- 手作業のコピー、転記、列整理を減らしたい
 
 ## 特徴・機能
 
-- ✅ **Google Apps Script ベース**: 追加費用なし、無料で運用可能
-- ✅ **一元管理**: `form-config.gs` で Form と Spreadsheet の設定を一括管理
-- ✅ **自動生成**: 設定から自動的に Form と Spreadsheet を生成
-- ✅ **堅牢な実装**: インデックスベースの回答取得で、質問タイトル変更に対応
-- ✅ **自動記録**: Form 送信時に自動的に Spreadsheet に行を追加
+- Google Apps Script ベース: 追加費用なし、無料で運用可能
+- 一元管理: `form-config.gs` で Form と Spreadsheet の設定を一括管理
+- 自動生成: 設定から自動的に Form と Spreadsheet を生成
+- 堅牢な実装: インデックスベースの回答取得で、質問タイトル変更に対応
+- 自動記録: Form 送信時に自動的に Spreadsheet に行を追加
+
+## このリポジトリについて
+
+Google Workspace を使った小さな業務改善のサンプルです。
+追加サーバーを用意せず、Google アカウントだけで運用できる構成を想定しています。
 
 ## 技術構成
 
-- **言語**: Google Apps Script (JavaScript)
-- **API**: Google Forms API, Google Sheets API
-- **管理方法**: Properties Service を使用した設定の永続化
+- 言語: Google Apps Script (JavaScript)
+- API: Google Forms API, Google Sheets API
+- 管理方法: Properties Service を使用した設定の永続化
 
 ## 工夫した点
 
-1. **設定の一元管理**
+1. 設定の一元管理
    - すべての Form 質問項目と Spreadsheet 列の対応を `FORM_CONFIG` で管理
    - 項目追加時は設定を変更するだけで自動対応
 
-2. **インデックスベースの回答取得**
+2. インデックスベースの回答取得
    - 質問タイトル変更にも対応できる堅牢な実装
    - 質問順序に基づいて回答を Spreadsheet に記録
 
-3. **自動化による効率化**
+3. 自動化による効率化
    - `setup()` 一度実行で Form と Spreadsheet を自動生成
    - その後は完全自動で回答を記録
 
